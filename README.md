@@ -1,3 +1,4 @@
+<pre>
 ********************************************************************
 
  logVarToErrorLog - print/log php variable information to the system
@@ -48,8 +49,66 @@
  This code commas with absolution no warranty whatsoever, so use it at your own
  peril :0) .
 
+ *************  Sample output to default PHP error log (php.ini)  ***************
+
+[17-Nov-2012 16:56:31] PHP Warning:  Module 'mysql' already loaded in Unknown on line 0
+[17-Nov-2012 16:56:31] PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
+[17-Nov-2012 16:56:31] *****  Begin logVarDefault  *****
+[17-Nov-2012 16:56:31] array(4) {
+  'foo' =>
+  string(3) "bar"
+  'my' =>
+  string(5) "thing"
+  [1] =>
+  int(2)
+  'hallo' =>
+  string(5) "world"
+}
+Array
+(
+    [foo] => bar
+    [my] => thing
+    [1] => 2
+    [hallo] => world
+)
+
+[17-Nov-2012 16:56:31] *****  End   logVarDefault  *****
+[17-Nov-2012 16:56:31] *****  Begin logVarDefault  *****
+[17-Nov-2012 16:56:31] string(12) " some stuff "
+ some stuff 
+
+
+ *************  Sample output to specified PHP error log  ***************
+
+[17-Nov-2012 16:16:12] *****  Begin logVarDefault  *****
+array(4) {
+  'foo' =>
+  string(3) "bar"
+  'my' =>
+  string(5) "thing"
+  [1] =>
+  int(2)
+  'hallo' =>
+  string(5) "world"
+}
+Array
+(
+    [foo] => bar
+    [my] => thing
+    [1] => 2
+    [hallo] => world
+)
+
+[17-Nov-2012 16:16:12] *****  End   logVarDefault  *****
+[17-Nov-2012 16:16:12] *****  Begin logVarDefault  *****
+string(12) " some stuff "
+ some stuff 
+[17-Nov-2012 16:16:12] *****  End   logVarDefault  *****
+
+
+
  Marty Turner
  November 2012
  mdturnerinoz@gmail.com (I seldom read this email, but can try... ;0) )
 
-
+</pre>
