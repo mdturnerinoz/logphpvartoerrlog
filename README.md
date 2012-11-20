@@ -53,7 +53,7 @@
 
 [17-Nov-2012 16:56:31] PHP Warning:  Module 'mysql' already loaded in Unknown on line 0
 [17-Nov-2012 16:56:31] PHP Warning:  Module 'pgsql' already loaded in Unknown on line 0
-[17-Nov-2012 16:56:31] *****  Begin logVarDefault  *****
+[17-Nov-2012 16:56:31] *****  Begin logVarToErrorLog  *****
 [17-Nov-2012 16:56:31] array(4) {
   'foo' =>
   string(3) "bar"
@@ -72,15 +72,15 @@ Array
     [hallo] => world
 )
 
-[17-Nov-2012 16:56:31] *****  End   logVarDefault  *****
-[17-Nov-2012 16:56:31] *****  Begin logVarDefault  *****
+[17-Nov-2012 16:56:31] *****  End   logVarToErrorLog  *****
+[17-Nov-2012 16:56:31] *****  Begin logVarToErrorLog  *****
 [17-Nov-2012 16:56:31] string(12) " some stuff "
  some stuff 
 
 
  *************  Sample output to specified PHP error log  ***************
 
-[17-Nov-2012 16:16:12] *****  Begin logVarDefault  *****
+[17-Nov-2012 16:16:12] *****  Begin logVarToErrorLog  *****
 array(4) {
   'foo' =>
   string(3) "bar"
@@ -99,11 +99,11 @@ Array
     [hallo] => world
 )
 
-[17-Nov-2012 16:16:12] *****  End   logVarDefault  *****
-[17-Nov-2012 16:16:12] *****  Begin logVarDefault  *****
+[17-Nov-2012 16:16:12] *****  End   logVarToErrorLog  *****
+[17-Nov-2012 16:16:12] *****  Begin logVarToErrorLog  *****
 string(12) " some stuff "
  some stuff 
-[17-Nov-2012 16:16:12] *****  End   logVarDefault  *****
+[17-Nov-2012 16:16:12] *****  End   logVarToErrorLog  *****
 
 
 
