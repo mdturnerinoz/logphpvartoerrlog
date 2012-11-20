@@ -46,9 +46,6 @@
  used above, or copy and vary them as you see fit based on the description of
  each variable (presently denoted within any current php.ini files).
 
- This code commas with absolution no warranty whatsoever, so use it at your own
- peril :0) .
-
  *************  Sample output to default PHP error log (php.ini)  ***************
 
 [17-Nov-2012 16:56:31] PHP Warning:  Module 'mysql' already loaded in Unknown on line 0
@@ -106,6 +103,8 @@ string(12) " some stuff "
 [17-Nov-2012 16:16:12] *****  End   logVarToErrorLog  *****
 
 
+ NOTE: This code commas with absolution no warranty whatsoever, so use it 
+       at your own peril :0) .  
 
  Marty Turner
  November 2012
