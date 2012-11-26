@@ -28,26 +28,28 @@ function logVarToErrorLog( $varToLog, $logFile )
    $myDate = date("[j-M-Y G:H:s]");
    
    if ($logFile == null)
-      error_log("*****  Begin logVarToErrorLog  *****");
+      error_log("*****  Begin logVarToErrorLog  *****\n");
    else
-   {
       error_log("$myDate *****  Begin logVarToErrorLog  *****\n", 3, $logFile);
-   }
+   
+   // If you need var_dump, then replace/add it near the print_r
+   // varToLog statement.
    ob_start();
-   var_dump($varToLog);
    print_r($varToLog);
+   if(!is_array($varToLog))  // arrays auto space non-arrays don't
+      print_r("\n");
    $buffer = ob_get_contents();
    ob_end_clean();
    
    if ($logFile == null)
    {
       error_log($buffer);
-      error_log("*****  End   logVarToErrorLog  *****");
+      error_log("*****  End   logVarToErrorLog  *****\n");
    }
    else
    {
       error_log($buffer, 3, $logFile);
-      error_log("\n$myDate *****  End   logVarToErrorLog  *****\n", 3, $logFile); 
+      error_log("$myDate *****  End   logVarToErrorLog  *****\n", 3, $logFile); 
    }
 } 
 // end code to place in your code.
@@ -57,15 +59,18 @@ function logVarToErrorLog( $varToLog, $logFile )
 //
 // Uncomment the next line to use a specific log file and comment out the
 // one after it (after placing your log file name in of course  :0) ).
-// $logFile = "<os-specific-path-to-logfile>php-errors.log";
-$logFile = null;  // null causes the system error log to be used (see php.ini)
+$logFile = "D:\cygwin\home\marty\projects\php-errors.log";
+// $logFile = null;  // null causes the system error log to be used (see php.ini)
 
 $array = array("foo" => "bar",
                "my" => "thing",
                1 => 2,
                "hallo" => "world");
 
+$array2 = null;
+
 logVarToErrorLog( $array, $logFile );
+logVarToErrorLog( $array2, $logFile);
 logVarToErrorLog(" some stuff ", $logFile);
 
 $myDate = date("[j-M-Y G:H:s]" . "\n");
