@@ -22,6 +22,25 @@
 //
 function logVarToErrorLog( $varToLog, $logFile )
 {
+   
+   // First, we get the name of the function that called us.
+   $trace = debug_backtrace();
+   //print_r($trace);
+   $tracCall = $trace[0];  // 0 is the immediate caller of trace
+   $prevCall = $trace[1];  // function that called logVarToErrorLog
+   $tracFunc = $prevCall["function"];
+   $tracFile = $tracCall["file"] . '#' . $tracCall["line"] . '(' . $tracFunc . ')';
+   $tracArgs = $tracCall["args"];
+   print_r($tracFile . "\n");
+   if (is_array($tracArgs[0])) {
+      foreach($tracArgs[0] as $fa => $fk)
+         print_r($fa . ' => ' . $fk . "\n");
+   }
+   else
+      print_r($tracArgs[0] . "\n" );
+ 
+  
+
    // Timestamps only done for the system log, so we have to do our own
    // if a logfile name has been passed to us. We do it using the same
    // format that the system log would provide (continuity, ya know).
@@ -59,6 +78,11 @@ function logVarToErrorLog( $varToLog, $logFile )
 //
 // Uncomment the next line to use a specific log file and comment out the
 // one after it (after placing your log file name in of course  :0) ).
+
+function main ($varMarty)
+
+{
+   
 $logFile = "D:\cygwin\home\marty\projects\php-errors.log";
 // $logFile = null;  // null causes the system error log to be used (see php.ini)
 
@@ -68,14 +92,27 @@ $array = array("foo" => "bar",
                "hallo" => "world");
 
 $array2 = null;
+$str1 = "hi";
 
-logVarToErrorLog( $array, $logFile );
-logVarToErrorLog( $array2, $logFile);
-logVarToErrorLog(" some stuff ", $logFile);
+//logVarToErrorLog( $array, $logFile );
+//logVarToErrorLog( $array2, $logFile);
+logVarToErrorLog($varMarty, $logFile);
+logVarToErrorLog($str1, $logFile);
 
 $myDate = date("[j-M-Y G:H:s]" . "\n");
 print_r($myDate);
 
-die ("We are done...\n"); 
+} // main
+
+$str4 = "from open code";
+$str2 = array(0,1,2,3);
+$str3 = array("hi1" => "to you", "there1" => 2);
+main($str2);
+
+$aa = 1;
+
+logVarToErrorLog($str4, $logFile);
+
+die ("We are done...\n");
 
 ?>
