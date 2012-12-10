@@ -23,23 +23,13 @@
 function logVarToErrorLog( $varToLog, $logFile )
 {
    
-   // First, we get the name of the function that called us.
-   $trace = debug_backtrace();
-   //print_r($trace);
-   $tracCall = $trace[0];  // 0 is the immediate caller of trace
-   $prevCall = $trace[1];  // function that called logVarToErrorLog
+   // First, we get the name of the function that called us. This is comtianed in
+   $trace    = debug_backtrace();
+   $tracCall = $trace[0];  // 0 is the immediate caller of logVarToErrorLog
+   $prevCall = $trace[1];  // function that called who called logVarToErrorLog
    $tracFunc = $prevCall["function"];
    $tracFile = $tracCall["file"] . '#' . $tracCall["line"] . '(' . $tracFunc . ')';
    $tracArgs = $tracCall["args"];
-   print_r($tracFile . "\n");
-   if (is_array($tracArgs[0])) {
-      foreach($tracArgs[0] as $fa => $fk)
-         print_r($fa . ' => ' . $fk . "\n");
-   }
-   else
-      print_r($tracArgs[0] . "\n" );
- 
-  
 
    // Timestamps only done for the system log, so we have to do our own
    // if a logfile name has been passed to us. We do it using the same
@@ -54,11 +44,19 @@ function logVarToErrorLog( $varToLog, $logFile )
    // If you need var_dump, then replace/add it near the print_r
    // varToLog statement.
    ob_start();
-   print_r($varToLog);
-   if(!is_array($varToLog))  // arrays auto space non-arrays don't
-      print_r("\n");
+      print_r($tracFile . "\n");
+   if (is_array($tracArgs[0])) {
+      foreach($tracArgs[0] as $fa => $fk)
+         print_r($fa . ' => ' . $fk . "\n");
+   }
+   else
+      print_r($tracArgs[0] . "\n" );
+   //if(!is_array($varToLog))  // arrays auto space non-arrays don't
+      //print_r("\n");
    $buffer = ob_get_contents();
    ob_end_clean();
+   
+   //print_r($buffer);  // uncomment this to test the contents of buffer
    
    if ($logFile == null)
    {
@@ -99,9 +97,6 @@ $str1 = "hi";
 logVarToErrorLog($varMarty, $logFile);
 logVarToErrorLog($str1, $logFile);
 
-$myDate = date("[j-M-Y G:H:s]" . "\n");
-print_r($myDate);
-
 } // main
 
 $str4 = "from open code";
@@ -113,6 +108,9 @@ $aa = 1;
 
 logVarToErrorLog($str4, $logFile);
 
+$myDate = date("\n[j-M-Y G:H:s]" . "\n");
+print_r($myDate);
 die ("We are done...\n");
+
 
 ?>
