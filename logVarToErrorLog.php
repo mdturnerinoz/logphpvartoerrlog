@@ -76,9 +76,11 @@ function logVarToErrorLog( $varToLog, $logFile )
 //
 // Uncomment the next line to use a specific log file and comment out the
 // one after it (after placing your log file name in of course  :0) ).
-
+// e.g.:
+// $logFile = "D:\cygwin\home\marty\projects\php-errors.log";
+// OR
+// $logFile = null;  // null causes the system error log to be used (see php.ini)
 function main ($varMarty)
-
 {
    
 $logFile = "D:\projects\DABSquared\php-errors.log";
@@ -99,12 +101,12 @@ logVarToErrorLog($str1, $logFile);
 
 } // main
 
-$str4 = "from open code";
+$str4 = "from open code (no function name)";
 $str2 = array(0,1,2,3);
 $str3 = array("hi1" => "to you", "there1" => 2);
 main($str2);
-//$logFile = "D:\projects\DABSquared\php-errors.log";
-$logFile = null;
+$logFile = "D:\projects\DABSquared\php-errors.log";
+//$logFile = null;
 
 $aa = 1;
 
