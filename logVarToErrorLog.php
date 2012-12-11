@@ -44,7 +44,7 @@ function logVarToErrorLog( $varToLog, $logFile )
    // If you need var_dump, then replace/add it near the print_r
    // varToLog statement.
    ob_start();
-      print_r($tracFile . "\n");
+   print_r($tracFile . "\n");
    if (is_array($tracArgs[0])) {
       foreach($tracArgs[0] as $fa => $fk)
          print_r($fa . ' => ' . $fk . "\n");
@@ -81,8 +81,8 @@ function main ($varMarty)
 
 {
    
-$logFile = "D:\cygwin\home\marty\projects\php-errors.log";
-// $logFile = null;  // null causes the system error log to be used (see php.ini)
+$logFile = "D:\projects\DABSquared\php-errors.log";
+//$logFile = null;  // null causes the system error log to be used (see php.ini)
 
 $array = array("foo" => "bar",
                "my" => "thing",
@@ -92,8 +92,8 @@ $array = array("foo" => "bar",
 $array2 = null;
 $str1 = "hi";
 
-//logVarToErrorLog( $array, $logFile );
-//logVarToErrorLog( $array2, $logFile);
+logVarToErrorLog( $array, $logFile );
+logVarToErrorLog( $array2, $logFile);
 logVarToErrorLog($varMarty, $logFile);
 logVarToErrorLog($str1, $logFile);
 
@@ -103,6 +103,8 @@ $str4 = "from open code";
 $str2 = array(0,1,2,3);
 $str3 = array("hi1" => "to you", "there1" => 2);
 main($str2);
+//$logFile = "D:\projects\DABSquared\php-errors.log";
+$logFile = null;
 
 $aa = 1;
 
