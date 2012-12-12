@@ -20,6 +20,7 @@
 // log_errors = On
 // error_log = /path/to/phperror.txt
 //
+// BEGIN code to place in your code:
 function logVarToErrorLog( $varToLog, $logFile )
 {
    
@@ -44,15 +45,11 @@ function logVarToErrorLog( $varToLog, $logFile )
    // If you need var_dump, then replace/add it near the print_r
    // varToLog statement.
    ob_start();
+   if ($logFile == null)
+      print_r("\n");
    print_r($tracFile . "\n");
-   if (is_array($tracArgs[0])) {
-      foreach($tracArgs[0] as $fa => $fk)
-         print_r($fa . ' => ' . $fk . "\n");
-   }
-   else
-      print_r($tracArgs[0] . "\n" );
-   //if(!is_array($varToLog))  // arrays auto space non-arrays don't
-      //print_r("\n");
+   var_export($tracArgs[0]);
+   print_r("\n");
    $buffer = ob_get_contents();
    ob_end_clean();
    
@@ -61,15 +58,15 @@ function logVarToErrorLog( $varToLog, $logFile )
    if ($logFile == null)
    {
       error_log($buffer);
-      error_log("*****  End   logVarToErrorLog  *****\n");
+      error_log("*****  End   logVarToErrorLog  *****\n\n");
    }
    else
    {
       error_log($buffer, 3, $logFile);
-      error_log("$myDate *****  End   logVarToErrorLog  *****\n", 3, $logFile); 
+      error_log("$myDate *****  End   logVarToErrorLog  *****\n\n", 3, $logFile); 
    }
 } 
-// end code to place in your code.
+// END code to place in your code.
 //
 // The code from here on is just used to test the logVarToErrorLog function.
 // Remove it before integrating logVarToErrorLog into your code.
